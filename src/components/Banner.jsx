@@ -7,11 +7,13 @@ const Banner = () => {
         Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!{" "}
         <span className="font-bold underline cursor-pointer">ShopNow</span>
       </span>
-      <div className="ml-auto flex items-center" style={{ marginRight: "200px" }}>
+      <div
+        className="ml-auto flex items-center"
+        style={{ marginRight: "200px" }}
+      >
         <select className="bg-black text-white border-none text-sm focus:outline-none">
           <option>English</option>
-          <option>Русский</option>
-          <option>O'zbekcha</option>
+          <option>Russian</option>
         </select>
       </div>
     </div>
