@@ -8,39 +8,51 @@ const Navbar = () => {
     <nav className="w-full bg-white h-[72px] flex items-center border-b border-gray-200">
       <div className="container flex items-center justify-between">
         <div className="font-bold text-2xl tracking-wide">Exclusive</div>
-        <ul className="flex gap-8 text-base font-medium">
+        <ul className="flex gap-8">
           <li>
-            <a href="#" className="border-b-2 border-black pb-1">
+            <a
+              href="#"
+              className="font-normal text-[16px] leading-6 border-b-2 border-black"
+            >
               Home
             </a>
           </li>
           <li>
-            <a href="#" className="hover:text-red-500 transition">
+            <a
+              href="#"
+              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
+            >
               Contact
             </a>
           </li>
           <li>
-            <a href="#" className="hover:text-red-500 transition">
+            <a
+              href="#"
+              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
+            >
               About
             </a>
           </li>
           <li>
-            <a href="#" className="hover:text-red-500 transition">
+            <a
+              href="#"
+              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
+            >
               Sign Up
             </a>
           </li>
         </ul>
         <div className="flex items-center gap-6">
-          <div className="relative">
+          <div className="flex items-center">
             <input
               type="text"
               placeholder="What are you looking for?"
-              className="bg-[#F5F5F5] rounded px-4 py-2 w-56 text-sm focus:outline-none"
+              className="bg-[#F5F5F5] rounded-tr-sm text-sm focus:outline-none py-[10px] px-[16px] pr-14"
             />
             <img
               src={searchIcon}
               alt="search"
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 cursor-pointer"
+              className="-ml-8 w-6 h-6 cursor-pointer"
             />
           </div>
           <img
@@ -48,7 +60,7 @@ const Navbar = () => {
             alt="wishlist"
             className="w-6 h-6 cursor-pointer"
           />
-              <img src={cartIcon} alt="cart" className="w-6 h-6 cursor-pointer" />
+          <img src={cartIcon} alt="cart" className="w-7 h-7 cursor-pointer" />
         </div>
       </div>
     </nav>
