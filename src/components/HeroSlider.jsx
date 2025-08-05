@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import iphoneImg from "../assets/img/hero-iphone.png";
 import appleLogo from "../assets/img/apple-logo.png";
 import rightBtn from "../assets/svg/right-btn.svg";
@@ -30,17 +30,38 @@ const slides = [
     link: "#",
     image: iphoneImg,
   },
+  {
+    logo: (
+      <img
+        src={appleLogo}
+        alt="Apple Logo"
+        className="w-8 h-8 md:w-10 md:h-10 object-contain"
+      />
+    ),
+    title: "iPhone 16 Series",
+    discount: "Up to 5% off Voucher",
+    link: "#",
+    image: iphoneImg,
+  },
 ];
 
 const HeroSlider = () => {
   const [current, setCurrent] = useState(0);
+  const slidesLength = slides.length;
+  const intervalRef = useRef();
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
+    intervalRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slidesLength);
     }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(intervalRef.current);
+  }, [slidesLength]);
+
+  // Discount matnini ikki qatorga bo'lish uchun
+  const discount = slides[current].discount;
+  const discountWords = discount.split(" ");
+  const firstLine = discountWords.slice(0, 3).join(" ");
+  const secondLine = discountWords.slice(3).join(" ");
 
   return (
     <div className="w-full ml-[80px] bg-black flex flex-col px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 mt-10">
@@ -49,11 +70,13 @@ const HeroSlider = () => {
           <div className="flex items-center gap-2 mb-2">
             {slides[current].logo}
             <span className="font-poppins font-normal text-[16px] leading-[24px] opacity-80">
-              iPhone 14 Series
+              {slides[current].title}
             </span>
           </div>
           <div className="font-inter font-semibold text-[32px] md:text-[48px] leading-[40px] md:leading-[60px] mb-4 md:mb-6">
-            Up to 10% <br className="hidden md:block" /> off Voucher
+            {firstLine}
+            <br className="hidden md:block" />
+            {secondLine}
           </div>
           <a
             href={slides[current].link}
