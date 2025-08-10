@@ -15,13 +15,15 @@ const categories = [
 
 const Sidebar = () => {
   return (
-    <aside className="w-[217px] bg-white border-r border-[#E4E4E4] flex flex-col pt-10">
+    <aside className="w-[300px] bg-white border-r border-[#E4E4E4] flex flex-col pt-10">
       {categories.map((cat, idx) => (
         <div
           key={cat}
           className="flex items-center justify-between pr-4 py-2 cursor-pointer hover:bg-[#F5F5F5] transition"
         >
-          <span className="text-[16px] text-[#000] font-normal">{cat}</span>
+          <span className="text-[16px] text-[#000] font-normal whitespace-nowrap">
+            {cat}
+          </span>
           {(idx === 0 || idx === 1) && (
             <img src={dropdownIcon} alt="dropdown" className="w-4 h-4" />
           )}
