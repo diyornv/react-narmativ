@@ -64,7 +64,7 @@ const HeroSlider = () => {
   const secondLine = discountWords.slice(3).join(" ");
 
   return (
-    <div className="w-full ml-[80px] bg-black flex flex-col px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40 mt-10">
+    <div className="w-full ml-[45px] bg-black flex flex-col px-20 mt-10">
       <div className="flex flex-row items-center flex-1 min-h-[344px] h-[344px]">
         <div className="flex-1 flex flex-col justify-center gap-0 md:gap-1 text-white z-10 h-full">
           <div className="flex items-center gap-2 mb-2">
