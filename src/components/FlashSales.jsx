@@ -55,7 +55,6 @@ const getTimeLeft = (target) => {
 };
 
 const FlashSales = ({ onPrev = () => {}, onNext = () => {} }) => {
-  // 4 soatlik chegirma muddati. Refresh qilinganda saqlanib qoladi.
   const targetTime = useMemo(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
@@ -79,7 +78,6 @@ const FlashSales = ({ onPrev = () => {}, onNext = () => {} }) => {
     const intervalId = setInterval(() => {
       const updated = getTimeLeft(targetTime);
       setTimeLeft(updated);
-      // Agar vaqt tugagan bo'lsa, deadline ni yangilamaymiz; 0 da qoladi
     }, 1000);
     return () => clearInterval(intervalId);
   }, [targetTime]);
@@ -87,7 +85,7 @@ const FlashSales = ({ onPrev = () => {}, onNext = () => {} }) => {
   const format = (n) => String(n).padStart(2, "0");
 
   return (
-    <section className="w-full">
+    <section className="w-full mt-20">
       <div className="container py-10">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-5 h-10 bg-[#DB4444] rounded-sm" />
