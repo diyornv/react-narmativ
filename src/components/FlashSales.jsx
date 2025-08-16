@@ -9,6 +9,8 @@ const MILLISECONDS_IN = {
   day: 24 * 60 * 60 * 1000,
 };
 
+const STORAGE_KEY = "flash_sales_deadline";
+
 const ArrowButton = ({ direction = "left", onClick }) => {
   return (
     <button
@@ -53,13 +55,31 @@ const getTimeLeft = (target) => {
 };
 
 const FlashSales = ({ onPrev = () => {}, onNext = () => {} }) => {
-  // Set sale end 4 days from mount. In real app, pass an exact date via props.
-  const targetTime = useMemo(() => Date.now() + 4 * MILLISECONDS_IN.day, []);
+  // 4 soatlik chegirma muddati. Refresh qilinganda saqlanib qoladi.
+  const targetTime = useMemo(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const now = Date.now();
+      if (stored) {
+        const parsed = parseInt(stored, 10);
+        if (Number.isFinite(parsed) && parsed > now) {
+          return parsed;
+        }
+      }
+      const newTarget = now + 4 * MILLISECONDS_IN.hour;
+      localStorage.setItem(STORAGE_KEY, String(newTarget));
+      return newTarget;
+    } catch {
+      return Date.now() + 4 * MILLISECONDS_IN.hour;
+    }
+  }, []);
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(targetTime));
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setTimeLeft(getTimeLeft(targetTime));
+      const updated = getTimeLeft(targetTime);
+      setTimeLeft(updated);
+      // Agar vaqt tugagan bo'lsa, deadline ni yangilamaymiz; 0 da qoladi
     }, 1000);
     return () => clearInterval(intervalId);
   }, [targetTime]);
