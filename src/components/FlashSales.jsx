@@ -24,7 +24,7 @@ const ProductCard = ({
   ratingCount,
 }) => {
   return (
-    <div className="w-[270px] group">
+    <div className="w-full group">
       <div className="relative bg-[#F5F5F5] w-full h-[250px] flex items-center justify-center rounded overflow-hidden">
         <img src={image} alt={title} className="max-h-[180px] object-contain" />
 
@@ -139,10 +139,10 @@ const FlashSales = () => {
 
   const [startIndex, setStartIndex] = useState(0);
   const VISIBLE = 5;
-  const CARD_WIDTH = 270;
+  const CARD_WIDTH = 1; // grid bilan to'liq kenglik ishlatiladi
   const GAP_PX = 28;
-  const PEEK_FRACTION = 0.5;
-  const PEEK_PX = Math.round(CARD_WIDTH * PEEK_FRACTION);
+  const PEEK_FRACTION = 0;
+  const PEEK_PX = 0;
   const productsLength = products.length;
   const containerWidth =
     VISIBLE * CARD_WIDTH + (VISIBLE - 1) * GAP_PX + PEEK_PX;
@@ -203,8 +203,8 @@ const FlashSales = () => {
           </div>
         </div>
 
-        <div className="mt-8 overflow-hidden" style={{ width: containerWidth }}>
-          <div className="flex gap-7">
+        <div className="mt-8 overflow-hidden w-full">
+          <div className="grid grid-cols-5 gap-4">
             {Array.from({ length: VISIBLE }).map((_, idx) => {
               const p = products[(startIndex + idx) % productsLength];
               return <ProductCard key={`${p.id}-${idx}`} {...p} />;

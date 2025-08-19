@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import HeroSlider from "./components/HeroSlider";
 import FlashSales from "./components/FlashSales";
+import CategorySlider from "./components/CategorySlider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -16,5 +17,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <HeroSlider />
     </div>
     <FlashSales />
+    <CategorySlider />
   </React.StrictMode>
 );
