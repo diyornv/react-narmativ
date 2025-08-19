@@ -211,6 +211,14 @@ const FlashSales = () => {
             })}
           </div>
         </div>
+        <div className="mt-18 flex justify-center">
+          <button
+            type="button"
+            className="bg-[#DB4444] text-white px-6 py-3 rounded cursor-pointer"
+          >
+            View All Products
+          </button>
+        </div>
       </div>
     </section>
   );
