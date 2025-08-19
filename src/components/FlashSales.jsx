@@ -1,6 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import leftArrow from "../assets/svg/icons_arrow-left.svg";
 import rightArrow from "../assets/svg/icons arrow-right.svg";
+import starIcon from "../assets/svg/star.svg";
+import quickViewIcon from "../assets/svg/QuickView.svg";
+import heartSmallIcon from "../assets/svg/heartsmall.svg";
+import { flashSalesProducts } from "../data/flashSales";
 
 const MILLISECONDS_IN = {
   second: 1000,
@@ -10,6 +14,66 @@ const MILLISECONDS_IN = {
 };
 
 const STORAGE_KEY = "flash_sales_deadline";
+
+const ProductCard = ({
+  image,
+  title,
+  price,
+  oldPrice,
+  discountPercent,
+  ratingCount,
+}) => {
+  return (
+    <div className="w-[270px] group">
+      <div className="relative bg-[#F5F5F5] w-full h-[250px] flex items-center justify-center rounded overflow-hidden">
+        <img src={image} alt={title} className="max-h-[180px] object-contain" />
+
+        <div className="absolute top-3 left-3 px-2 py-1 rounded bg-[#DB4444] text-white text-[12px] font-medium">
+          -{discountPercent}%
+        </div>
+        <div className="absolute top-3 right-3 flex flex-col gap-2">
+          <button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+            <img src={heartSmallIcon} alt="wishlist" className="w-4 h-4" />
+          </button>
+          <button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+            <img src={quickViewIcon} alt="quick view" className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="absolute left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition">
+          <button
+            type="button"
+            className="w-full bg-black text-white py-2 rounded-b"
+          >
+            Add To Cart
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-3">
+        <h3 className="text-[16px] leading-[24px] font-semibold line-clamp-2 mb-2">
+          {title}
+        </h3>
+        <div className="flex items-center gap-3 mt-2">
+          <span className="text-[#DB4444] font-medium">${price}</span>
+          {oldPrice ? (
+            <span className="text-[#808080] line-through">${oldPrice}</span>
+          ) : null}
+        </div>
+        <div className="flex items-center gap-2 mt-2">
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, idx) => (
+              <img key={idx} src={starIcon} alt="star" className="w-4 h-4" />
+            ))}
+          </div>
+          <span className="text-[#808080] text-sm">({ratingCount})</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const products = flashSalesProducts;
 
 const ArrowButton = ({ direction = "left", onClick }) => {
   return (
@@ -33,44 +97,35 @@ const TimeBox = ({ label, value }) => {
       <span className="text-[12px] text-[#909090] leading-[18px] mb-1">
         {label}
       </span>
-      <span className="text-[32px] md:text-[40px] font-semibold leading-[40px] md:leading-[48px]">
-        {value}
-      </span>
+      <span className="text-[40px] font-semibold leading-[48px]">{value}</span>
     </div>
   );
 };
 
 const getTimeLeft = (target) => {
-  const now = Date.now();
-  const diff = Math.max(0, target - now);
-  const days = Math.floor(diff / MILLISECONDS_IN.day);
-  const hours = Math.floor((diff % MILLISECONDS_IN.day) / MILLISECONDS_IN.hour);
-  const minutes = Math.floor(
-    (diff % MILLISECONDS_IN.hour) / MILLISECONDS_IN.minute
-  );
-  const seconds = Math.floor(
-    (diff % MILLISECONDS_IN.minute) / MILLISECONDS_IN.second
-  );
-  return { days, hours, minutes, seconds };
+  const diff = Math.max(0, target - Date.now());
+  return {
+    days: Math.floor(diff / MILLISECONDS_IN.day),
+    hours: Math.floor((diff % MILLISECONDS_IN.day) / MILLISECONDS_IN.hour),
+    minutes: Math.floor((diff % MILLISECONDS_IN.hour) / MILLISECONDS_IN.minute),
+    seconds: Math.floor(
+      (diff % MILLISECONDS_IN.minute) / MILLISECONDS_IN.second
+    ),
+  };
 };
 
-const FlashSales = ({ onPrev = () => {}, onNext = () => {} }) => {
+const FlashSales = () => {
   const targetTime = useMemo(() => {
+    const now = Date.now();
+    const stored = Number(localStorage.getItem(STORAGE_KEY));
+    const target =
+      Number.isFinite(stored) && stored > now
+        ? stored
+        : now + 4 * MILLISECONDS_IN.hour;
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      const now = Date.now();
-      if (stored) {
-        const parsed = parseInt(stored, 10);
-        if (Number.isFinite(parsed) && parsed > now) {
-          return parsed;
-        }
-      }
-      const newTarget = now + 4 * MILLISECONDS_IN.hour;
-      localStorage.setItem(STORAGE_KEY, String(newTarget));
-      return newTarget;
-    } catch {
-      return Date.now() + 4 * MILLISECONDS_IN.hour;
-    }
+      localStorage.setItem(STORAGE_KEY, String(target));
+    } catch {}
+    return target;
   }, []);
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(targetTime));
 
@@ -82,7 +137,22 @@ const FlashSales = ({ onPrev = () => {}, onNext = () => {} }) => {
     return () => clearInterval(intervalId);
   }, [targetTime]);
 
-  const format = (n) => String(n).padStart(2, "0");
+  const [startIndex, setStartIndex] = useState(0);
+  const VISIBLE = 5;
+  const CARD_WIDTH = 270;
+  const GAP_PX = 28;
+  const PEEK_FRACTION = 0.5;
+  const PEEK_PX = Math.round(CARD_WIDTH * PEEK_FRACTION);
+  const productsLength = products.length;
+  const containerWidth =
+    VISIBLE * CARD_WIDTH + (VISIBLE - 1) * GAP_PX + PEEK_PX;
+
+  const prev = () => {
+    setStartIndex((s) => (s - 1 + productsLength) % productsLength);
+  };
+  const next = () => {
+    setStartIndex((s) => (s + 1) % productsLength);
+  };
 
   return (
     <section className="w-full mt-20">
@@ -94,30 +164,51 @@ const FlashSales = ({ onPrev = () => {}, onNext = () => {} }) => {
 
         <div className="flex items-center justify-between gap-6">
           <div className="min-w-[220px]">
-            <h2 className="text-[28px] md:text-[36px] font-semibold leading-[32px] md:leading-[48px]">
+            <h2 className="text-[36px] font-semibold leading-[48px]">
               Flash Sales
             </h2>
           </div>
 
-          <div className="flex items-center gap-4 md:gap-6">
-            <TimeBox label="Days" value={format(timeLeft.days)} />
-            <span className="text-[#DB4444] text-[28px] md:text-[32px] font-semibold mt-6">
+          <div className="flex items-center gap-6">
+            <TimeBox
+              label="Days"
+              value={String(timeLeft.days).padStart(2, "0")}
+            />
+            <span className="text-[#DB4444] text-[32px] font-semibold mt-6">
               :
             </span>
-            <TimeBox label="Hours" value={format(timeLeft.hours)} />
-            <span className="text-[#DB4444] text-[28px] md:text-[32px] font-semibold mt-6">
+            <TimeBox
+              label="Hours"
+              value={String(timeLeft.hours).padStart(2, "0")}
+            />
+            <span className="text-[#DB4444] text-[32px] font-semibold mt-6">
               :
             </span>
-            <TimeBox label="Minutes" value={format(timeLeft.minutes)} />
-            <span className="text-[#DB4444] text-[28px] md:text-[32px] font-semibold mt-6">
+            <TimeBox
+              label="Minutes"
+              value={String(timeLeft.minutes).padStart(2, "0")}
+            />
+            <span className="text-[#DB4444] text-[32px] font-semibold mt-6">
               :
             </span>
-            <TimeBox label="Seconds" value={format(timeLeft.seconds)} />
+            <TimeBox
+              label="Seconds"
+              value={String(timeLeft.seconds).padStart(2, "0")}
+            />
           </div>
 
           <div className="flex items-center gap-3">
-            <ArrowButton direction="left" onClick={onPrev} />
-            <ArrowButton direction="right" onClick={onNext} />
+            <ArrowButton direction="left" onClick={prev} />
+            <ArrowButton direction="right" onClick={next} />
+          </div>
+        </div>
+
+        <div className="mt-8 overflow-hidden" style={{ width: containerWidth }}>
+          <div className="flex gap-7">
+            {Array.from({ length: VISIBLE }).map((_, idx) => {
+              const p = products[(startIndex + idx) % productsLength];
+              return <ProductCard key={`${p.id}-${idx}`} {...p} />;
+            })}
           </div>
         </div>
       </div>
