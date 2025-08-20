@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import leftArrow from "../assets/svg/icons_arrow-left.svg";
-import rightArrow from "../assets/svg/icons arrow-right.svg";
+import rightArrow from "../assets/svg/icons_arrow-right.svg";
 import starIcon from "../assets/svg/star.svg";
 import quickViewIcon from "../assets/svg/QuickView.svg";
 import heartSmallIcon from "../assets/svg/heartsmall.svg";
