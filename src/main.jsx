@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import HeroSlider from "./components/HeroSlider";
 import FlashSales from "./components/FlashSales";
 import CategorySlider from "./components/CategorySlider";
+import BestSelling from "./components/BestSelling";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -18,5 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </div>
     <FlashSales />
     <CategorySlider />
+    <BestSelling />
   </React.StrictMode>
 );

@@ -43,7 +43,7 @@ const ProductCard = ({
         <div className="absolute left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition">
           <button
             type="button"
-            className="w-full bg-black text-white py-2 rounded-b"
+            className="w-full bg-black text-white py-2 rounded-b cursor-pointer"
           >
             Add To Cart
           </button>
