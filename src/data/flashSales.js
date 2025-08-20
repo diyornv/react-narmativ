@@ -2,6 +2,10 @@ import imgGamepad from "../assets/img/g-92.png";
 import imgKeyboard from "../assets/img/ak-900.png";
 import imgMonitor from "../assets/img/g-27.png";
 import imgChair from "../assets/img/s-chair.png";
+import monthly1 from "../assets/img/monthly-sale1.png";
+import monthly2 from "../assets/img/monthly-sale2.png";
+import monthly3 from "../assets/img/monthly-sale3.png";
+import monthly4 from "../assets/img/monthly-sale4.png";
 
 export const flashSalesProducts = [
   {
@@ -42,3 +46,37 @@ export const flashSalesProducts = [
   },
 ];
 
+export const bestSellingProducts = [
+  {
+    id: "m1",
+    title: "The north coat",
+    image: monthly1,
+    price: 260,
+    oldPrice: 360,
+    ratingCount: 65,
+  },
+  {
+    id: "m2",
+    title: "Gucci duffle bag",
+    image: monthly2,
+    price: 960,
+    oldPrice: 1160,
+    ratingCount: 65,
+  },
+  {
+    id: "m3",
+    title: "RGB liquid CPU Cooler",
+    image: monthly3,
+    price: 160,
+    oldPrice: 170,
+    ratingCount: 65,
+  },
+  {
+    id: "m4",
+    title: "Small BookSelf",
+    image: monthly4,
+    price: 360,
+    oldPrice: null,
+    ratingCount: 65,
+  },
+];
