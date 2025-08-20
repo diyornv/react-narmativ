@@ -29,7 +29,7 @@ const Tile = ({ title, icon }) => {
       <img
         src={icon}
         alt={title}
-        className="w-9 h-9 mb-3 transition group-hover:invert"
+        className="w-14 h-14 mb-3 transition group-hover:invert"
       />
       <span className="text-[16px] leading-[24px]">{title}</span>
     </div>
