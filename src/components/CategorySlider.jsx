@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import leftArrow from "../assets/svg/icons_arrow-left.svg";
-import rightArrow from "../assets/svg/icons arrow-right.svg";
+import rightArrow from "../assets/svg/icons_arrow-right.svg";
 import iconPhone from "../assets/svg/Category-CellPhone.svg";
 import iconComputer from "../assets/svg/Category-Computer.svg";
 import iconWatch from "../assets/svg/Category-SmartWatch.svg";
