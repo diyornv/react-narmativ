@@ -6,6 +6,14 @@ import monthly1 from "../assets/img/monthly-sale1.png";
 import monthly2 from "../assets/img/monthly-sale2.png";
 import monthly3 from "../assets/img/monthly-sale3.png";
 import monthly4 from "../assets/img/monthly-sale4.png";
+import our1 from "../assets/img/our1.png";
+import our2 from "../assets/img/our2.png";
+import our3 from "../assets/img/our3.png";
+import our4 from "../assets/img/our4.png";
+import our5 from "../assets/img/our5.png";
+import our6 from "../assets/img/our6.png";
+import our7 from "../assets/img/our7.png";
+import our8 from "../assets/img/our8.png";
 
 export const flashSalesProducts = [
   {
@@ -78,5 +86,70 @@ export const bestSellingProducts = [
     price: 360,
     oldPrice: null,
     ratingCount: 65,
+  },
+];
+
+export const exploreProducts = [
+  {
+    id: "e1",
+    title: "Breed Dry Dog Food",
+    image: our1,
+    price: 100,
+    ratingCount: 35,
+  },
+  {
+    id: "e2",
+    title: "CANON EOS DSLR Camera",
+    image: our2,
+    price: 360,
+    ratingCount: 95,
+  },
+  {
+    id: "e3",
+    title: "ASUS FHD Gaming Laptop",
+    image: our3,
+    price: 700,
+    ratingCount: 325,
+  },
+  {
+    id: "e4",
+    title: "Curology Product Set",
+    image: our4,
+    price: 500,
+    ratingCount: 145,
+  },
+  {
+    id: "e5",
+    title: "Kids Electric Car",
+    image: our5,
+    price: 960,
+    ratingCount: 65,
+    isNew: true,
+    colors: ["#DB4444", "#000000"],
+  },
+  {
+    id: "e6",
+    title: "Jr. Zoom Soccer Cleats",
+    image: our6,
+    price: 1160,
+    ratingCount: 35,
+    colors: ["#FDE047", "#DB4444"],
+  },
+  {
+    id: "e7",
+    title: "GP11 Shooter USB Gamepad",
+    image: our7,
+    price: 660,
+    ratingCount: 55,
+    isNew: true,
+    colors: ["#000000", "#DB4444"],
+  },
+  {
+    id: "e8",
+    title: "Quilted Satin Jacket",
+    image: our8,
+    price: 660,
+    ratingCount: 55,
+    colors: ["#00FF66", "#DB4444"],
   },
 ];

@@ -9,6 +9,7 @@ import FlashSales from "./components/FlashSales";
 import CategorySlider from "./components/CategorySlider";
 import BestSelling from "./components/BestSelling";
 import JblBanner from "./components/JblBanner";
+import ExploreProducts from "./components/ExploreProducts";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -22,5 +23,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <CategorySlider />
     <BestSelling />
     <JblBanner />
+    <ExploreProducts />
   </React.StrictMode>
 );
