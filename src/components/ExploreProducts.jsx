@@ -56,7 +56,7 @@ const Card = ({ image, title, price, ratingCount, isNew, colors }) => {
             type="button"
             className="w-full bg-black text-white py-2 rounded-b"
           >
-            image.png Add To Cart
+            Add To Cart
           </button>
         </div>
       </div>
