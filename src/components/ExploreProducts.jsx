@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import leftArrow from "../assets/svg/icons_arrow-left.svg";
+import rightArrow from "../assets/svg/icons_arrow-right.svg";
 import starIcon from "../assets/svg/star.svg";
 import heartSmallIcon from "../assets/svg/heartsmall.svg";
 import quickViewIcon from "../assets/svg/QuickView.svg";
@@ -42,11 +44,11 @@ const Card = ({ image, title, price, ratingCount, isNew, colors }) => {
           </span>
         ) : null}
         <div className="absolute top-3 right-3 flex flex-col gap-2">
-          <button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-            <img src={heartSmallIcon} alt="wishlist" className="w-4 h-4" />
+          <button className="w-8 h-8 rounded-full bg-white border border-[#E4E4E4] flex items-center justify-center cursor-pointer">
+            <img src={heartSmallIcon} alt="wishlist" className="w-5 h-5" />
           </button>
-          <button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-            <img src={quickViewIcon} alt="quick view" className="w-4 h-4" />
+          <button className="w-8 h-8 rounded-full bg-white border border-[#E4E4E4] flex items-center justify-center cursor-pointer">
+            <img src={quickViewIcon} alt="quick view" className="w-5 h-5" />
           </button>
         </div>
         <div className="absolute left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition">
@@ -54,7 +56,7 @@ const Card = ({ image, title, price, ratingCount, isNew, colors }) => {
             type="button"
             className="w-full bg-black text-white py-2 rounded-b"
           >
-            Add To Cart
+            image.png Add To Cart
           </button>
         </div>
       </div>
@@ -98,15 +100,15 @@ const ExploreProducts = () => {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="w-10 h-10 rounded-full bg-[#F5F5F5]"
+              className="w-10 h-10 rounded-full bg-[#F5F5F5] flex items-center justify-center hover:bg-[#E9E9E9] transition cursor-pointer"
             >
-              ←
+              <img src={leftArrow} alt="prev" className="w-5 h-5" />
             </button>
             <button
               type="button"
-              className="w-10 h-10 rounded-full bg-[#F5F5F5]"
+              className="w-10 h-10 rounded-full bg-[#F5F5F5] flex items-center justify-center hover:bg-[#E9E9E9] transition cursor-pointer"
             >
-              →
+              <img src={rightArrow} alt="next" className="w-5 h-5" />
             </button>
           </div>
         </div>
