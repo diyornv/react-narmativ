@@ -11,6 +11,7 @@ import BestSelling from "./components/BestSelling";
 import JblBanner from "./components/JblBanner";
 import ExploreProducts from "./components/ExploreProducts";
 import Arrival from "./components/Arrival";
+import Services from "./components/Services";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -26,5 +27,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <JblBanner />
     <ExploreProducts />
     <Arrival />
+    <Services />
   </React.StrictMode>
 );
