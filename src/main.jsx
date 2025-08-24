@@ -12,6 +12,7 @@ import JblBanner from "./components/JblBanner";
 import ExploreProducts from "./components/ExploreProducts";
 import Arrival from "./components/Arrival";
 import Services from "./components/Services";
+import Footer from "./components/Footer";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -28,5 +29,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <ExploreProducts />
     <Arrival />
     <Services />
+    <Footer />
   </React.StrictMode>
 );

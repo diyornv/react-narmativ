@@ -11,7 +11,7 @@ const Services = () => {
 
   return (
     <section className="w-full">
-      <div className="container py-[140px]">
+      <div className="container py-[120px]">
         <div className="">
           <div className="w-full grid grid-cols-3 gap-6">
             <div className="flex flex-col items-center text-center gap-4">
