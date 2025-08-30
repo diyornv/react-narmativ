@@ -83,7 +83,7 @@ const Navbar = () => {
             <div
               onClick={toggleUserMenu}
               className={`w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-colors ${
-                isUserMenuOpen ? "bg-red-500" : "bg-gray-100"
+                isUserMenuOpen ? "bg-red-500" : ""
               }`}
             >
               <img
@@ -152,20 +152,18 @@ const Navbar = () => {
                       My Reviews
                     </a>
 
-                    <div className="border-t border-gray-100/20 mt-1">
-                      <a
-                        href="#"
-                        className="flex items-center px-4 py-3 text-sm text-red-400"
-                        onClick={closeUserMenu}
-                      >
-                        <img
-                          src={logoutIcon}
-                          alt="logout"
-                          className="w-4 h-4 mr-3"
-                        />
-                        Logout
-                      </a>
-                    </div>
+                    <a
+                      href="#"
+                      className="flex items-center px-4 py-3 text-sm text-red-400"
+                      onClick={closeUserMenu}
+                    >
+                      <img
+                        src={logoutIcon}
+                        alt="logout"
+                        className="w-4 h-4 mr-3"
+                      />
+                      Logout
+                    </a>
                   </div>
                 </div>
               </div>
