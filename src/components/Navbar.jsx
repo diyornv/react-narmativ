@@ -2,6 +2,7 @@ import React from "react";
 import heartIcon from "../assets/svg/heart.svg";
 import cartIcon from "../assets/svg/cart.svg";
 import searchIcon from "../assets/svg/search.svg";
+import userIcon from "../assets/svg/user.svg";
 
 const Navbar = () => {
   return (
@@ -61,6 +62,7 @@ const Navbar = () => {
             className="w-6 h-6 cursor-pointer"
           />
           <img src={cartIcon} alt="cart" className="w-7 h-7 cursor-pointer" />
+          <img src={userIcon} alt="user" className="w-7 h-7 cursor-pointer" />
         </div>
       </div>
     </nav>
