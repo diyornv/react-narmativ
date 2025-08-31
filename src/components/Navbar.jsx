@@ -10,10 +10,12 @@ import cancelIcon from "../assets/svg/icon-cancel.svg";
 import reviewsIcon from "../assets/svg/icon-reviews.svg";
 import logoutIcon from "../assets/svg/Icon-logout.svg";
 import { useWishlist } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
 
 const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { wishlistCount } = useWishlist();
+  const { getTotalItems } = useCart();
 
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
@@ -36,14 +38,7 @@ const Navbar = () => {
               Home
             </a>
           </li>
-          <li>
-            <Link
-              to="/just-for-you"
-              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
-            >
-              Just For You
-            </Link>
-          </li>
+
           <li>
             <a
               href="#"
@@ -94,7 +89,14 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-          <img src={cartIcon} alt="cart" className="w-7 h-7 cursor-pointer" />
+          <Link to="/cart" className="relative">
+            <img src={cartIcon} alt="cart" className="w-7 h-7 cursor-pointer" />
+            {getTotalItems() > 0 && (
+              <span className="absolute -top-2 -right-2 w-5 h-5 bg-[#DB4444] text-white text-xs rounded-full flex items-center justify-center font-medium">
+                {getTotalItems()}
+              </span>
+            )}
+          </Link>
 
           {/* User Icon with Dropdown */}
           <div className="relative">

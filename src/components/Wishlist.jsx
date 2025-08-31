@@ -1,5 +1,6 @@
 import React from "react";
 import { useWishlist } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
 import trashIcon from "../assets/svg/trash.svg";
 import cartIcon from "../assets/svg/cart-white.svg";
 import starIcon from "../assets/svg/star.svg";
@@ -24,12 +25,6 @@ const WishlistItem = ({ product, onRemove, onAddToCart }) => {
           alt={product.title}
           className="max-h-[180px] object-contain"
         />
-
-        {product.discountPercent && (
-          <div className="absolute top-3 left-3 px-2 py-1 rounded bg-[#DB4444] text-white text-[12px] font-medium">
-            -{product.discountPercent}%
-          </div>
-        )}
 
         <button
           onClick={() => onRemove(product.id)}
@@ -59,11 +54,6 @@ const WishlistItem = ({ product, onRemove, onAddToCart }) => {
         </h3>
         <div className="flex items-center gap-3 mt-2">
           <span className="text-[#DB4444] font-medium">${product.price}</span>
-          {product.oldPrice && (
-            <span className="text-[#808080] line-through">
-              ${product.oldPrice}
-            </span>
-          )}
         </div>
       </div>
     </div>
@@ -71,7 +61,12 @@ const WishlistItem = ({ product, onRemove, onAddToCart }) => {
 };
 
 const Wishlist = () => {
-  const { wishlist, removeFromWishlist, moveAllToCart } = useWishlist();
+  const { wishlist, removeFromWishlist } = useWishlist();
+  const { moveAllToCart, addToCart } = useCart();
+
+  const handleMoveAllToCart = () => {
+    moveAllToCart(wishlist);
+  };
 
   if (wishlist.length === 0) {
     return (
@@ -104,7 +99,7 @@ const Wishlist = () => {
             Wishlist ({wishlist.length})
           </h1>
           <button
-            onClick={moveAllToCart}
+            onClick={handleMoveAllToCart}
             className="bg-[#DB4444] text-white px-6 py-3 rounded hover:bg-red-600 transition-colors"
           >
             Move All To Bag
@@ -117,9 +112,7 @@ const Wishlist = () => {
               key={product.id}
               product={product}
               onRemove={removeFromWishlist}
-              onAddToCart={(product) => {
-                console.log("Adding to cart:", product);
-              }}
+              onAddToCart={addToCart}
             />
           ))}
         </div>
@@ -149,12 +142,6 @@ const Wishlist = () => {
                     alt={product.title}
                     className="max-h-[180px] object-contain"
                   />
-
-                  {product.discountPercent && (
-                    <span className="absolute top-3 left-3 bg-[#DB4444] text-white text-[12px] px-2 py-1 rounded">
-                      -{product.discountPercent}%
-                    </span>
-                  )}
 
                   {product.isNew && (
                     <span className="absolute top-3 left-3 bg-[#00FF66] text-black text-[12px] px-2 py-1 rounded">
@@ -190,11 +177,6 @@ const Wishlist = () => {
                     <span className="text-[#DB4444] font-medium">
                       ${product.price}
                     </span>
-                    {product.oldPrice && (
-                      <span className="text-[#808080] line-through">
-                        ${product.oldPrice}
-                      </span>
-                    )}
                   </div>
                   <div className="flex items-center gap-2 mt-2">
                     <div className="flex items-center gap-1">

@@ -7,6 +7,8 @@ import heartSmallIcon from "../assets/svg/heartsmall.svg";
 import heartIcon from "../assets/svg/heart.svg";
 import { flashSalesProducts } from "../data/flashSales";
 import { useWishlist } from "../context/WishlistContext";
+import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const MILLISECONDS_IN = {
   second: 1000,
@@ -27,6 +29,8 @@ const ProductCard = ({
   id,
 }) => {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
   const inWishlist = isInWishlist(id);
 
   const handleWishlistToggle = () => {
@@ -43,6 +47,19 @@ const ProductCard = ({
         ratingCount,
       });
     }
+  };
+
+  const handleAddToCart = () => {
+    addToCart({
+      id,
+      image,
+      title,
+      price,
+      oldPrice,
+      discountPercent,
+      ratingCount,
+    });
+    // Cart pagega o'tmaslik, faqat cartga qo'shish
   };
 
   return (
@@ -76,7 +93,8 @@ const ProductCard = ({
         <div className="absolute left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition">
           <button
             type="button"
-            className="w-full bg-black text-white py-2 rounded-b cursor-pointer"
+            onClick={handleAddToCart}
+            className="w-full bg-black text-white py-2 rounded-b cursor-pointer hover:bg-gray-800 transition-colors"
           >
             Add To Cart
           </button>
