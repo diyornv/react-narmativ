@@ -3,8 +3,10 @@ import leftArrow from "../assets/svg/icons_arrow-left.svg";
 import rightArrow from "../assets/svg/icons_arrow-right.svg";
 import starIcon from "../assets/svg/star.svg";
 import heartSmallIcon from "../assets/svg/heartsmall.svg";
+import heartIcon from "../assets/svg/heart.svg";
 import quickViewIcon from "../assets/svg/QuickView.svg";
 import { exploreProducts } from "../data/flashSales";
+import { useWishlist } from "../context/WishlistContext";
 
 const ColorPicker = ({ colors = [], value, onChange }) => {
   if (!colors.length) return null;
@@ -32,8 +34,27 @@ const ColorPicker = ({ colors = [], value, onChange }) => {
   );
 };
 
-const Card = ({ image, title, price, ratingCount, isNew, colors }) => {
+const Card = ({ id, image, title, price, ratingCount, isNew, colors }) => {
   const [selectedColor, setSelectedColor] = useState(colors?.[0] || "");
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const inWishlist = isInWishlist(id);
+
+  const handleWishlistToggle = () => {
+    if (inWishlist) {
+      removeFromWishlist(id);
+    } else {
+      addToWishlist({
+        id,
+        image,
+        title,
+        price,
+        ratingCount,
+        isNew,
+        colors,
+      });
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="relative bg-[#F5F5F5] w-full h-[250px] flex items-center justify-center rounded overflow-hidden group">
@@ -44,8 +65,21 @@ const Card = ({ image, title, price, ratingCount, isNew, colors }) => {
           </span>
         ) : null}
         <div className="absolute top-3 right-3 flex flex-col gap-2">
-          <button className="w-8 h-8 rounded-full bg-white border border-[#E4E4E4] flex items-center justify-center cursor-pointer">
-            <img src={heartSmallIcon} alt="wishlist" className="w-5 h-5" />
+          <button
+            onClick={handleWishlistToggle}
+            className={`w-8 h-8 rounded-full border border-[#E4E4E4] flex items-center justify-center cursor-pointer transition-colors ${
+              inWishlist
+                ? "bg-red-500 border-red-500"
+                : "bg-white hover:bg-red-50"
+            }`}
+          >
+            <img
+              src={inWishlist ? heartIcon : heartSmallIcon}
+              alt="wishlist"
+              className={`w-5 h-5 ${
+                inWishlist ? "filter brightness-0 invert" : ""
+              }`}
+            />
           </button>
           <button className="w-8 h-8 rounded-full bg-white border border-[#E4E4E4] flex items-center justify-center cursor-pointer">
             <img src={quickViewIcon} alt="quick view" className="w-5 h-5" />

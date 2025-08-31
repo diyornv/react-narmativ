@@ -16,6 +16,8 @@ import Services from "./components/Services";
 import Footer from "./components/Footer";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import Wishlist from "./components/Wishlist";
+import { WishlistProvider } from "./context/WishlistContext";
 
 const HomePage = () => (
   <>
@@ -34,7 +36,7 @@ const HomePage = () => (
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <WishlistProvider>
     <Router>
       <Banner />
       <Navbar />
@@ -42,8 +44,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
       <Footer />
     </Router>
-  </React.StrictMode>
+  </WishlistProvider>
 );

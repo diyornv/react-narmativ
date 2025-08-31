@@ -4,7 +4,9 @@ import rightArrow from "../assets/svg/icons_arrow-right.svg";
 import starIcon from "../assets/svg/star.svg";
 import quickViewIcon from "../assets/svg/QuickView.svg";
 import heartSmallIcon from "../assets/svg/heartsmall.svg";
+import heartIcon from "../assets/svg/heart.svg";
 import { flashSalesProducts } from "../data/flashSales";
+import { useWishlist } from "../context/WishlistContext";
 
 const MILLISECONDS_IN = {
   second: 1000,
@@ -22,7 +24,27 @@ const ProductCard = ({
   oldPrice,
   discountPercent,
   ratingCount,
+  id,
 }) => {
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const inWishlist = isInWishlist(id);
+
+  const handleWishlistToggle = () => {
+    if (inWishlist) {
+      removeFromWishlist(id);
+    } else {
+      addToWishlist({
+        id,
+        image,
+        title,
+        price,
+        oldPrice,
+        discountPercent,
+        ratingCount,
+      });
+    }
+  };
+
   return (
     <div className="w-full group">
       <div className="relative bg-[#F5F5F5] w-full h-[250px] flex items-center justify-center rounded overflow-hidden">
@@ -32,8 +54,19 @@ const ProductCard = ({
           -{discountPercent}%
         </div>
         <div className="absolute top-3 right-3 flex flex-col gap-2">
-          <button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-            <img src={heartSmallIcon} alt="wishlist" className="w-4 h-4" />
+          <button
+            onClick={handleWishlistToggle}
+            className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
+              inWishlist ? "bg-red-500" : "bg-white hover:bg-red-50"
+            }`}
+          >
+            <img
+              src={inWishlist ? heartIcon : heartSmallIcon}
+              alt="wishlist"
+              className={`w-4 h-4 ${
+                inWishlist ? "filter brightness-0 invert" : ""
+              }`}
+            />
           </button>
           <button className="w-8 h-8 rounded-full bg-white flex items-center justify-center">
             <img src={quickViewIcon} alt="quick view" className="w-4 h-4" />

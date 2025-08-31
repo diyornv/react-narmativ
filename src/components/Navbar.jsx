@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import heartIcon from "../assets/svg/heart.svg";
-import cartIcon from "../assets/svg/cart.svg";
+import cartIcon from "../assets/svg/cart-black.svg";
 import searchIcon from "../assets/svg/search.svg";
 import userIcon from "../assets/svg/user.svg";
 import manageAccountIcon from "../assets/svg/menu-user.svg";
@@ -8,9 +9,11 @@ import orderIcon from "../assets/svg/icon-mallbag.svg";
 import cancelIcon from "../assets/svg/icon-cancel.svg";
 import reviewsIcon from "../assets/svg/icon-reviews.svg";
 import logoutIcon from "../assets/svg/Icon-logout.svg";
+import { useWishlist } from "../context/WishlistContext";
 
 const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const { wishlistCount } = useWishlist();
 
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
@@ -71,11 +74,18 @@ const Navbar = () => {
               className="-ml-8 w-6 h-6 cursor-pointer"
             />
           </div>
-          <img
-            src={heartIcon}
-            alt="wishlist"
-            className="w-6 h-6 cursor-pointer"
-          />
+          <Link to="/wishlist" className="relative">
+            <img
+              src={heartIcon}
+              alt="wishlist"
+              className="w-6 h-6 cursor-pointer"
+            />
+            {wishlistCount > 0 && (
+              <span className="absolute -top-2 -right-2 w-5 h-5 bg-[#DB4444] text-white text-xs rounded-full flex items-center justify-center font-medium">
+                {wishlistCount}
+              </span>
+            )}
+          </Link>
           <img src={cartIcon} alt="cart" className="w-7 h-7 cursor-pointer" />
 
           {/* User Icon with Dropdown */}
