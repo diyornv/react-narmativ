@@ -152,6 +152,59 @@ const Cart = () => {
             Update Cart
           </button>
         </div>
+
+        {/* Coupon and Cart Total Section */}
+        <div className="mt-8 flex flex-col lg:flex-row gap-8">
+          <div className="flex-1">
+            <div className="flex gap-4 items-end">
+              <div className="w-80">
+                <input
+                  type="text"
+                  placeholder="Coupon Code"
+                  className="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none"
+                />
+              </div>
+              <button className="px-6 py-3 bg-[#DB4444] text-white rounded cursor-pointer">
+                Apply Coupon
+              </button>
+            </div>
+          </div>
+
+          <div className="lg:w-96">
+            <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                Cart Total
+              </h3>
+              <div className="space-y-4 mb-8">
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-gray-600 text-lg">Subtotal:</span>
+                  <span className="font-semibold text-lg">
+                    ${getTotalPrice().toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-gray-600 text-lg">Shipping:</span>
+                  <span className="font-semibold text-lg text-green-600">
+                    Free
+                  </span>
+                </div>
+                <div className="border-t border-gray-200 pt-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xl font-bold text-gray-900">
+                      Total:
+                    </span>
+                    <span className="text-xl font-bold text-[#DB4444]">
+                      ${getTotalPrice().toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <button className="w-full bg-[#DB4444] text-white py-4 rounded-lg  font-semibold cursor-pointer">
+                Proceed to checkout
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
