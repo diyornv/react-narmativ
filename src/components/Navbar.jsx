@@ -37,6 +37,14 @@ const Navbar = () => {
             </a>
           </li>
           <li>
+            <Link
+              to="/just-for-you"
+              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
+            >
+              Just For You
+            </Link>
+          </li>
+          <li>
             <a
               href="#"
               className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"

@@ -153,3 +153,40 @@ export const exploreProducts = [
     colors: ["#00FF66", "#DB4444"],
   },
 ];
+
+export const justForYouProducts = [
+  {
+    id: "j1",
+    title: "ASUS FHD Gaming Laptop",
+    image: our3,
+    price: 960,
+    oldPrice: 1160,
+    discountPercent: 35,
+    ratingCount: 65,
+  },
+  {
+    id: "j2",
+    title: "IPS LCD Gaming Monitor",
+    image: our6,
+    price: 1160,
+    oldPrice: null,
+    ratingCount: 65,
+  },
+  {
+    id: "j3",
+    title: "HAVIT HV-G92 Gamepad",
+    image: our7,
+    price: 560,
+    oldPrice: null,
+    ratingCount: 65,
+    isNew: true,
+  },
+  {
+    id: "j4",
+    title: "AK-900 Wired Keyboard",
+    image: our8,
+    price: 200,
+    oldPrice: null,
+    ratingCount: 65,
+  },
+];
