@@ -199,7 +199,10 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-              <button className="w-full bg-[#DB4444] text-white py-4 rounded-lg  font-semibold cursor-pointer">
+              <button
+                onClick={() => navigate("/checkout")}
+                className="w-full bg-[#DB4444] text-white py-4 rounded-lg  font-semibold cursor-pointer hover:bg-[#B91C1C] transition-colors"
+              >
                 Proceed to checkout
               </button>
             </div>
