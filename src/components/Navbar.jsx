@@ -120,8 +120,8 @@ const Navbar = () => {
               <div className="absolute right-0 top-12 w-56 bg-black/4 backdrop-blur-[150px] border border-gray-200/20 rounded-lg shadow-lg z-50">
                 <div className="py-2">
                   <div className="py-1">
-                    <a
-                      href="#"
+                    <Link
+                      to="/account"
                       className="flex items-center px-4 py-3 text-sm text-white"
                       onClick={closeUserMenu}
                     >
@@ -131,7 +131,7 @@ const Navbar = () => {
                         className="w-4 h-4 mr-3"
                       />
                       Manage My Account
-                    </a>
+                    </Link>
 
                     <a
                       href="#"
