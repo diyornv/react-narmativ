@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import heartIcon from "../assets/svg/heart.svg";
 import cartIcon from "../assets/svg/cart-black.svg";
 import searchIcon from "../assets/svg/search.svg";
@@ -16,6 +16,7 @@ const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { wishlistCount } = useWishlist();
   const { getTotalItems } = useCart();
+  const location = useLocation();
 
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
@@ -31,12 +32,16 @@ const Navbar = () => {
         <div className="font-bold text-2xl tracking-wide">Exclusive</div>
         <ul className="flex gap-8">
           <li>
-            <a
-              href="#"
-              className="font-normal text-[16px] leading-6 border-b-2 border-black"
+            <Link
+              to="/"
+              className={`font-normal text-[16px] leading-6 border-b-2 transition ${
+                location.pathname === "/"
+                  ? "border-black"
+                  : "border-transparent hover:border-black"
+              }`}
             >
               Home
-            </a>
+            </Link>
           </li>
 
           <li>
@@ -48,20 +53,28 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
+            <Link
+              to="/about"
+              className={`font-normal text-[16px] leading-6 border-b-2 transition ${
+                location.pathname === "/about"
+                  ? "border-black"
+                  : "border-transparent hover:border-black"
+              }`}
             >
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
+            <Link
+              to="/sign-up"
+              className={`font-normal text-[16px] leading-6 border-b-2 transition ${
+                location.pathname === "/sign-up"
+                  ? "border-black"
+                  : "border-transparent hover:border-black"
+              }`}
             >
               Sign Up
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="flex items-center gap-6">

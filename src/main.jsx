@@ -20,6 +20,7 @@ import Wishlist from "./components/Wishlist";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Account from "./components/Account";
+import About from "./components/About";
 import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
 
@@ -53,6 +54,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </Router>
