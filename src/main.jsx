@@ -21,6 +21,8 @@ import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Account from "./components/Account";
 import About from "./components/About";
+import Contact from "./components/Contact";
+import Gaming from "./components/Gaming";
 import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
 
@@ -55,6 +57,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/account" element={<Account />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/gaming" element={<Gaming />} />
         </Routes>
         <Footer />
       </Router>

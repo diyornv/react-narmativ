@@ -45,12 +45,16 @@ const Navbar = () => {
           </li>
 
           <li>
-            <a
-              href="#"
-              className="font-normal text-[16px] leading-6 border-b-2 border-transparent hover:border-black transition"
+            <Link
+              to="/contact"
+              className={`font-normal text-[16px] leading-6 border-b-2 transition ${
+                location.pathname === "/contact"
+                  ? "border-black"
+                  : "border-transparent hover:border-black"
+              }`}
             >
               Contact
-            </a>
+            </Link>
           </li>
           <li>
             <Link
