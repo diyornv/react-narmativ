@@ -5,12 +5,19 @@ import services4 from "../assets/img/Services.png";
 import services1 from "../assets/img/Services-1.png";
 import services2 from "../assets/img/Services-2.png";
 import services3 from "../assets/img/Services-3.png";
+import tomCruise from "../assets/img/tomcruise.png";
+import emmaWatson from "../assets/img/emmawatson.png";
+import willSmith from "../assets/img/willsmith.png";
 import customerServiceIcon from "../assets/svg/Icon-Customer-service.svg";
 import deliveryIcon from "../assets/svg/icon-delivery.svg";
 import secureIcon from "../assets/svg/Icon-secure.svg";
+import twitterIcon from "../assets/img/Icon-Twitter.png";
+import instagramIcon from "../assets/img/icon-instagram.png";
+import linkedinIcon from "../assets/img/Icon-Linkedin.png";
 
 const About = () => {
   const [activeService, setActiveService] = useState(0);
+  const [teamSlide, setTeamSlide] = useState(0);
 
   const services = [
     {
@@ -35,6 +42,17 @@ const About = () => {
       image: services3,
     },
   ];
+
+  const teamMembers = [
+    { name: "Tom Cruise", role: "Founder & Chairman", img: tomCruise },
+    { name: "Emma Watson", role: "Managing Director", img: emmaWatson },
+    { name: "Will Smith", role: "Product Designer", img: willSmith },
+  ];
+
+  const slides = [];
+  for (let i = 0; i < teamMembers.length; i += 3) {
+    slides.push(teamMembers.slice(i, i + 3));
+  }
 
   return (
     <div className="min-h-screen ">
@@ -79,22 +97,19 @@ const About = () => {
         </div>
       </div>
 
-      {/* Services Section removed per design */}
-
-      {/* Statistics Section */}
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 1 */}
-          <div className="group bg-white p-6 rounded-lg  border border-black hover:bg-red-500 cursor-pointer">
+          <div className="group p-6 rounded-lg border border-[#3a3737] hover:bg-[#DB4444] cursor-pointer">
             <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white">
                 <img
                   src={services4}
-                  alt="Service 1"
-                  className="w-10 h-10 object-cover"
+                  alt="img"
+                  className="w-20 h-20 object-cover"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-white">
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white">
                 10.5k
               </h3>
               <p className="text-sm text-gray-600 group-hover:text-white">
@@ -102,63 +117,122 @@ const About = () => {
               </p>
             </div>
           </div>
-
           {/* Card 2 */}
-          <div className="group bg-white p-6 rounded-lg shadow-sm border border-black transition-colors duration-200 hover:bg-red-500 cursor-pointer">
+          <div className="group p-6 rounded-lg border border-[#3a3737] hover:bg-[#DB4444] cursor-pointer">
             <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white">
                 <img
                   src={services1}
-                  alt="Service 2"
-                  className="w-10 h-10 object-cover"
+                  alt="img"
+                  className="w-20 h-20 object-cover"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-white">
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white">
                 33k
               </h3>
               <p className="text-sm text-gray-600 group-hover:text-white">
-                Mopnthly Produduct Sale
+                Sallers active our site
               </p>
             </div>
           </div>
-
           {/* Card 3 */}
-          <div className="group bg-white p-6 rounded-lg shadow-sm border border-black transition-colors duration-200 hover:bg-red-500 cursor-pointer">
+          <div className="group p-6 rounded-lg border border-[#3a3737] hover:bg-[#DB4444] cursor-pointer">
             <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white">
                 <img
                   src={services2}
-                  alt="Service 3"
-                  className="w-10 h-10 object-cover"
+                  alt="img"
+                  className="w-20 h-20 object-cover"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-white">
-                45.5k
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white">
+                10.5k
               </h3>
               <p className="text-sm text-gray-600 group-hover:text-white">
-                Customer active in our site
+                Sallers active our site
               </p>
             </div>
           </div>
-
           {/* Card 4 */}
-          <div className="group bg-white p-6 rounded-lg shadow-sm border border-black transition-colors duration-200 hover:bg-red-500 cursor-pointer">
+          <div className="group p-6 rounded-lg border border-[#3a3737] hover:bg-[#DB4444] cursor-pointer">
             <div className="flex flex-col items-center text-center">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4 group-hover:bg-white">
                 <img
                   src={services3}
-                  alt="Service 4"
-                  className="w-10 h-10 object-cover"
+                  alt="img"
+                  className="w-20 h-20 object-cover"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-white">
-                25k
+              <h3 className="text-2xl font-bold mb-2 group-hover:text-white">
+                10.5k
               </h3>
               <p className="text-sm text-gray-600 group-hover:text-white">
-                Anual gross sale in our site
+                Sallers active our site
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Team Slider */}
+      <div className="container py-16">
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-500"
+            style={{ transform: `translateX(-${teamSlide * 100}%)` }}
+          >
+            {slides.map((group, slideIdx) => (
+              <div
+                key={slideIdx}
+                className="min-w-full grid grid-cols-1 md:grid-cols-3 gap-8"
+              >
+                {group.map((member) => (
+                  <div key={member.name} className="flex flex-col">
+                    <div className="bg-[#F5F5F5] rounded-md h-[480px] flex items-end justify-center">
+                      <img
+                        src={member.img}
+                        alt={member.name}
+                        className="h-[460px] object-contain"
+                      />
+                    </div>
+                    <h3 className="mt-6 text-2xl font-semibold text-black">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-gray-600">{member.role}</p>
+                    <div className="mt-4 flex items-center gap-4">
+                      <img
+                        src={twitterIcon}
+                        alt="twitter"
+                        className="w-5 h-5"
+                      />
+                      <img
+                        src={instagramIcon}
+                        alt="instagram"
+                        className="w-5 h-5"
+                      />
+                      <img
+                        src={linkedinIcon}
+                        alt="linkedin"
+                        className="w-5 h-5"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setTeamSlide(idx)}
+              className={`w-2 h-2 rounded-full ${
+                teamSlide === idx ? "bg-[#DB4444]" : "bg-gray-300"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>
