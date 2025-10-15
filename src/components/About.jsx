@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import sideImage from "../assets/img/SideImage.png";
+import services4 from "../assets/img/Services.png";
 import services1 from "../assets/img/Services-1.png";
 import services2 from "../assets/img/Services-2.png";
 import services3 from "../assets/img/Services-3.png";
-import services4 from "../assets/img/Services.png";
 import customerServiceIcon from "../assets/svg/Icon-Customer-service.svg";
 import deliveryIcon from "../assets/svg/icon-delivery.svg";
 import secureIcon from "../assets/svg/Icon-secure.svg";
@@ -85,11 +85,11 @@ const About = () => {
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 1 */}
-          <div className="group bg-white p-6 rounded-lg shadow-sm border border-black transition-colors duration-200 hover:bg-red-500 cursor-pointer">
+          <div className="group bg-white p-6 rounded-lg  border border-black hover:bg-red-500 cursor-pointer">
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
                 <img
-                  src={services1}
+                  src={services4}
                   alt="Service 1"
                   className="w-10 h-10 object-cover"
                 />
@@ -108,7 +108,7 @@ const About = () => {
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
                 <img
-                  src={services2}
+                  src={services1}
                   alt="Service 2"
                   className="w-10 h-10 object-cover"
                 />
@@ -127,7 +127,7 @@ const About = () => {
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
                 <img
-                  src={services3}
+                  src={services2}
                   alt="Service 3"
                   className="w-10 h-10 object-cover"
                 />
@@ -146,7 +146,7 @@ const About = () => {
             <div className="flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 border border-black group-hover:bg-white">
                 <img
-                  src={services4}
+                  src={services3}
                   alt="Service 4"
                   className="w-10 h-10 object-cover"
                 />
